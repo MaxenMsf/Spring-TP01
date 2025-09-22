@@ -19,6 +19,10 @@ public class Bibliotheque {
         livres.remove(livre);
     }
 
+    public void supprimerEtudiant(Etudiant etudiant) {
+        etudiants.remove(etudiant);
+    }
+
     public List<Livre> getLivres() {
         return Collections.unmodifiableList(livres);
     }

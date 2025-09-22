@@ -1,0 +1,11 @@
+meta {
+  name: Les informations d'un livre donné par son ISBN
+  type: http
+  seq: 6
+}
+
+get {
+  url: http://localhost:8080/bibliotheque/livres/9780132350884
+  body: none
+  auth: inherit
+}

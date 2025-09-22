@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.web.server.ResponseStatusException;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/bibliotheque")
@@ -83,5 +84,49 @@ public class BibliothequeController {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Étudiant non trouvé");
         }
         return livres;
+    }
+
+    @GetMapping("/annee/{annee}")
+    public List<Livre> getLivresParAnnee(@PathVariable int annee) {
+        return bibliotheque.getLivres().stream()
+                .filter(livre -> livre.getAnneePublication() == annee)
+                .collect(Collectors.toList());
+    }
+
+    @DeleteMapping("/livres/{isbn}")
+    public void supprimerLivre(@PathVariable String isbn) {
+        Livre livre = bibliotheque.getLivreByIsbn(isbn);
+        if (livre == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Livre non trouvé");
+        }
+        bibliotheque.supprimerLivre(livre);
+    }
+
+    @DeleteMapping("/etudiants/{numeroEtudiant}")
+    public void supprimerEtudiant(@PathVariable String numeroEtudiant) {
+        Etudiant etudiant = bibliotheque.getEtudiantByNumero(numeroEtudiant);
+        if (etudiant == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Etudiant non trouvé");
+        }
+        bibliotheque.supprimerEtudiant(etudiant);
+    }
+
+    @PostMapping("/emprunts/{isbn}/{numeroEtudiant}")
+    public void emprunterLivre(
+            @PathVariable String isbn,
+            @PathVariable String numeroEtudiant) {
+        Livre livre = bibliotheque.getLivreByIsbn(isbn);
+        Etudiant etudiant = bibliotheque.getEtudiantByNumero(numeroEtudiant);
+
+        if (livre == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Livre non trouvé");
+        }
+        if (etudiant == null) {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Étudiant non trouvé");
+        }
+        if (livre.isEmprunte()) {
+            throw new ResponseStatusException(HttpStatus.CONFLICT, "Livre déjà emprunté");
+        }
+        livre.setEmprunte(true);
     }
 }
