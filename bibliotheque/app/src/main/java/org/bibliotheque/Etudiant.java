@@ -1,5 +1,8 @@
 package org.bibliotheque;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public class Etudiant {
     private String nom;
     private String prenom;

@@ -1,11 +1,15 @@
 package org.bibliotheque;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Livre {
     private String titre;
     private String auteur;
     private int anneePublication;
     private String isbn;
     private Categorie categorie;
+    private boolean emprunte = false;
 
     public Livre(String titre, String auteur, int anneePublication, String isbn, Categorie categorie) {
         this.titre = titre;
@@ -30,6 +34,12 @@ public class Livre {
 
     public Categorie getCategorie() { return categorie; }
     public void setCategorie(Categorie categorie) { this.categorie = categorie; }
+
+    public boolean isEmprunte() { return emprunte; }
+
+    public void setEmprunte(boolean emprunte) { this.emprunte = true; }
+
+    public void setRetourne(boolean emprunte) { this.emprunte = false; }
 
     @Override
     public String toString() {

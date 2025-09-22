@@ -1,0 +1,11 @@
+meta {
+  name: Récupérer les livres d'une catégorie
+  type: http
+  seq: 5
+}
+
+get {
+  url: http://localhost:8080/bibliotheque/livres/categorie/INFORMATIQUE
+  body: none
+  auth: inherit
+}
