@@ -2,8 +2,18 @@ package org.bibliotheque;
 
 import java.util.HashMap;
 import java.util.Map;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
+@Entity
+@Table(name = "etudiants")
 public class Etudiant {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
     private String nom;
     private String prenom;
     private String numeroEtudiant;
@@ -12,6 +22,10 @@ public class Etudiant {
         this.nom = nom;
         this.prenom = prenom;
         this.numeroEtudiant = numeroEtudiant;
+    }
+
+    public Etudiant() {
+
     }
 
     public String getNom() { return nom; }

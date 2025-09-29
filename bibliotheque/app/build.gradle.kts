@@ -27,6 +27,12 @@ dependencies {
     // This dependency is used by the application.
     implementation(libs.guava)
     implementation("org.springframework.boot:spring-boot-starter-web")
+    // Ces dépendances sont les mêmes quelque soit le SGBD utilisé.
+    implementation("org.springframework.boot:spring-boot-starter-data-jpa")
+    runtimeOnly("org.hibernate.orm:hibernate-community-dialects")
+
+    // Celle-ci est propre à SQLite : il faudra l'adapter pour un autre SGBD.
+    runtimeOnly("org.xerial:sqlite-jdbc")
 }
 
 // Apply a specific Java toolchain to ease working on different environments.

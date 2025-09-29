@@ -2,8 +2,20 @@ package org.bibliotheque;
 
 import java.util.ArrayList;
 import java.util.List;
+import jakarta.persistence.Entity;
+import jakarta.persistence.Table;
+import jakarta.persistence.Id;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 
+@Entity
+@Table(name = "livres")
 public class Livre {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Enumerated(EnumType.STRING)
+    private Genre genre;
     private String titre;
     private String auteur;
     private int anneePublication;
@@ -18,8 +30,11 @@ public class Livre {
         this.isbn = isbn;
         this.categorie = categorie;
     }
+    
+    public Livre() {
 
-    // Getters et setters
+    }
+
     public String getTitre() { return titre; }
     public void setTitre(String titre) { this.titre = titre; }
 
