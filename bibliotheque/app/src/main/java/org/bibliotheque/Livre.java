@@ -7,6 +7,8 @@ import jakarta.persistence.Table;
 import jakarta.persistence.Id;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
+import jakarta.persistence.Enumerated;
+import jakarta.persistence.EnumType;
 
 @Entity
 @Table(name = "livres")
@@ -14,12 +16,11 @@ public class Livre {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @Enumerated(EnumType.STRING)
-    private Genre genre;
     private String titre;
     private String auteur;
     private int anneePublication;
     private String isbn;
+    @Enumerated(EnumType.STRING)
     private Categorie categorie;
     private boolean emprunte = false;
 

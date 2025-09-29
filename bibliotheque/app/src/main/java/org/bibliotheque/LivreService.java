@@ -1,6 +1,8 @@
+
 package org.bibliotheque;
 
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class LivreService {
@@ -14,7 +16,7 @@ public class LivreService {
     public Livre creerLivre(Livre livre) {
         return livreRepository.save(livre);
     }
-    public Livre getLivreParIsbn(String isbn) {
+    public Livre getLivreByIsbn(String isbn) {
         return livreRepository.findByIsbn(isbn);
     }
     public List<Livre> getLivresParTitre(String titre) {
@@ -28,5 +30,14 @@ public class LivreService {
     }
     public List<Livre> getLivresEmpruntes(boolean emprunte) {
         return livreRepository.findByEmprunte(emprunte);
+    }
+    public List<Livre> getLivres() {
+        return livreRepository.findAll();
+    }
+    public List<Livre> getLivresDisponibles() {
+        return livreRepository.findByEmprunte(false);
+    }
+    public void supprimerLivre(Livre livre) {
+        livreRepository.delete(livre);
     }
 }

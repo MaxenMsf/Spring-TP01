@@ -19,7 +19,7 @@ public class Emprunt {
     private LocalDate dateEmprunt;
 
 
-    public Emprunt(Livre livre, String etudiant, LocalDate dateEmprunt) {
+    public Emprunt(Livre livre, Etudiant etudiant, LocalDate dateEmprunt) {
         this.livre = livre;
         this.etudiant = etudiant;
         this.dateEmprunt = dateEmprunt;

@@ -1,6 +1,8 @@
+
 package org.bibliotheque;
 
 import org.springframework.stereotype.Service;
+import java.util.List;
 
 @Service
 public class EtudiantService {
@@ -21,5 +23,11 @@ public class EtudiantService {
     }
     public List<Etudiant> getEtudiantsParPrenom(String prenom) {
         return etudiantRepository.findByPrenom(prenom);
+    }
+    public List<Etudiant> getEtudiants() {
+        return etudiantRepository.findAll();
+    }
+    public void supprimerEtudiant(Etudiant etudiant) {
+        etudiantRepository.delete(etudiant);
     }
 }
